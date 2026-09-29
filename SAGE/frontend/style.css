@@ -1,0 +1,716 @@
+/* ══════════════════════════════════════
+   TOKENS — LIGHT
+══════════════════════════════════════ */
+:root {
+  --green:       #2ecc71;
+  --green-dark:  #27ae60;
+  --green-light: #d5f5e3;
+  --bg:          #2ecc71;
+  --body-bg:     #f4f6f8;
+  --card:        #ffffff;
+  --card2:       #f8f9fa;
+  --text:        #1a1a2e;
+  --text2:       #444;
+  --muted:       #6b7280;
+  --border:      #e5e7eb;
+  --input-bg:    #e8e8e8;
+  --thead-bg:    #ecf0f1;
+  --row-hover:   #f9fafb;
+  --shadow:      0 8px 32px rgba(0,0,0,.12);
+  --shadow-sm:   0 2px 12px rgba(0,0,0,.08);
+  --radius:      16px;
+  --radius-sm:   10px;
+  --topbar-bg:   #2ecc71;
+  --sidebar-bg:  #1a2e23;
+  --overlay:     rgba(0,0,0,.45);
+}
+
+
+[data-theme="dark"] {
+  --bg:         #1a2e23;
+  --body-bg:    #111827;
+  --card:       #1f2937;
+  --card2:      #263040;
+  --text:       #f1f5f9;
+  --text2:      #cbd5e1;
+  --muted:      #94a3b8;
+  --border:     #374151;
+  --input-bg:   #374151;
+  --thead-bg:   #263040;
+  --row-hover:  #263040;
+  --shadow:     0 8px 32px rgba(0,0,0,.4);
+  --shadow-sm:  0 2px 12px rgba(0,0,0,.3);
+  --topbar-bg:  #16a05a;
+  --sidebar-bg: #0f1a14;
+}
+
+/* ══════════════════════════════════════
+   BASE
+══════════════════════════════════════ */
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);min-height:100vh;display:flex;flex-direction:column;transition:background .3s,color .3s}
+
+.screen{display:none}
+.screen.active{display:flex}
+
+/* ══════════════════════════════════════
+   LOGIN / HOME
+══════════════════════════════════════ */
+#screen-login,#screen-home{flex:1;align-items:center;justify-content:center;min-height:100vh}
+
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:2.5rem 2.8rem;width:100%;max-width:420px;animation:popIn .35s cubic-bezier(.34,1.56,.64,1);transition:background .3s,box-shadow .3s}
+
+@keyframes popIn{from{opacity:0;transform:scale(.92) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
+
+.card h1{font-family:'Nunito',sans-serif;font-size:2rem;font-weight:800;text-align:center;color:var(--text);margin-bottom:1.6rem;letter-spacing:-.5px}
+.card h2{font-family:'Nunito',sans-serif;font-size:1.2rem;font-weight:700;text-align:center;color:var(--text);margin-bottom:1.4rem}
+
+/* ── FIELDS ── */
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:.35rem}
+.field input[type="text"],
+.field input[type="password"],
+.field input[type="email"],
+.field input[type="tel"],
+.field input[type="date"],
+.field select{
+  width:100%;background:var(--input-bg);border:1.5px solid transparent;border-radius:8px;
+  padding:.6rem .85rem;font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--text);
+  outline:none;transition:box-shadow .2s,border-color .2s,background .3s,color .3s
+}
+.field input:focus,.field select:focus{border-color:var(--green);box-shadow:0 0 0 2.5px var(--green)33}
+
+/* ── BUTTONS ── */
+.btn{display:block;width:100%;background:var(--green);color:#fff;border:none;border-radius:50px;padding:.75rem 1rem;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:background .2s,transform .1s;margin-top:.5rem}
+.btn:hover{background:var(--green-dark)}
+.btn:active{transform:scale(.97)}
+.btn-group{display:flex;flex-direction:column;gap:.8rem}
+.btn-grey{background:#7f8c8d!important}
+.btn-grey:hover{background:#636e72!important}
+.btn-danger{background:#e74c3c!important}
+.btn-danger:hover{background:#c0392b!important}
+.btn-blue{background:#3498db!important}
+.btn-blue:hover{background:#2980b9!important}
+
+/* ══════════════════════════════════════
+   FORM SCREENS (cadastro / encontrar)
+══════════════════════════════════════ */
+#screen-cadastro,#screen-encontrar{flex:1;flex-direction:column;align-items:center;justify-content:flex-start;min-height:100vh;padding:2rem 1rem 3rem;background:var(--bg);transition:background .3s}
+
+.form-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:2rem 2.2rem;width:100%;max-width:720px;animation:popIn .35s cubic-bezier(.34,1.56,.64,1);transition:background .3s}
+.form-card h2{font-family:'Nunito',sans-serif;font-weight:800;font-size:1.6rem;text-align:center;margin-bottom:1.6rem;color:var(--text)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem 2rem}
+.form-grid .field{margin-bottom:0}
+.radio-group{display:flex;gap:1.5rem;margin-top:.35rem}
+.radio-group label{display:flex;align-items:center;gap:.4rem;font-weight:500;cursor:pointer;font-size:.95rem;color:var(--text)}
+.form-footer{margin-top:1.6rem;display:flex;justify-content:center}
+.form-footer .btn{width:auto;padding:.75rem 3rem}
+
+.back-link{display:inline-flex;align-items:center;gap:.4rem;color:#fff;font-weight:600;font-size:.9rem;cursor:pointer;margin-bottom:1rem;opacity:.9;transition:opacity .2s;background:none;border:none;font-family:'DM Sans',sans-serif}
+.back-link:hover{opacity:1}
+
+/* ══════════════════════════════════════
+   DASHBOARD
+══════════════════════════════════════ */
+#screen-dashboard{flex:1;flex-direction:column;min-height:100vh;background:var(--body-bg);transition:background .3s}
+
+.topbar{background:var(--topbar-bg);padding:.85rem 1.5rem;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:background .3s}
+.topbar-left{display:flex;align-items:center;gap:.6rem}
+.topbar-brand{font-family:'Nunito',sans-serif;font-weight:800;font-size:1.2rem;color:#fff;letter-spacing:-.3px}
+.topbar-right{display:flex;align-items:center;gap:.6rem}
+.topbar .user-info{color:#fff;font-weight:600;font-size:.9rem;display:flex;align-items:center;gap:.4rem}
+.topbar-btn{background:none;border:none;cursor:pointer;color:#fff;font-size:1.1rem;padding:.3rem;border-radius:6px;transition:background .2s,transform .2s}
+.topbar-btn:hover{background:rgba(255,255,255,.15);transform:scale(1.1)}
+.topbar-btn.spin:hover{transform:rotate(40deg)}
+
+.dash-body{padding:1.5rem;transition:background .3s}
+
+.table-card{background:var(--card);border-radius:var(--radius-sm);overflow:hidden;box-shadow:var(--shadow-sm);transition:background .3s}
+.table-header{background:#7f8c8d;color:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:1rem;padding:.9rem 1.2rem;display:flex;justify-content:space-between;align-items:center}
+
+table{width:100%;border-collapse:collapse}
+thead tr{background:var(--thead-bg)}
+thead th{text-align:left;padding:.75rem 1rem;font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);border-bottom:2px solid var(--border);transition:background .3s}
+tbody tr{transition:background .15s}
+tbody tr:hover{background:var(--row-hover)}
+tbody td{padding:.75rem 1rem;font-size:.9rem;color:var(--text);border-bottom:1px solid var(--border);transition:color .3s,border-color .3s}
+
+.badge{display:inline-block;padding:.2rem .65rem;border-radius:50px;font-size:.78rem;font-weight:700}
+.badge-sim{background:#fde8e8;color:#c0392b}
+.badge-nao{background:#d5f5e3;color:#1e8449}
+.badge-admin{background:#fef3c7;color:#d97706}
+.badge-user{background:#dbeafe;color:#1d4ed8}
+
+.empty-state{padding:3rem 1rem;text-align:center;color:var(--muted);font-size:.95rem}
+
+.dash-actions{display:flex;gap:.8rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.dash-actions .btn{width:auto;padding:.6rem 1.4rem;font-size:.9rem;margin-top:0}
+
+/* ══════════════════════════════════════
+   MODALS
+══════════════════════════════════════ */
+.modal-overlay{display:none;position:fixed;inset:0;background:var(--overlay);z-index:500;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--card);border-radius:var(--radius);padding:2rem;width:90%;max-width:420px;box-shadow:var(--shadow);animation:popIn .3s ease;transition:background .3s}
+.modal-box h3{font-family:'Nunito',sans-serif;font-weight:800;margin-bottom:1rem;font-size:1.3rem;color:var(--text)}
+.modal-box p{font-size:.9rem;color:var(--muted);margin-bottom:.5rem}
+.modal-actions{display:flex;gap:.8rem;margin-top:1.2rem}
+.modal-actions .btn{flex:1;margin-top:0}
+.modal-close{position:absolute;top:.8rem;right:1rem;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--muted)}
+
+/* ══════════════════════════════════════
+   SETTINGS PANEL (slide-in)
+══════════════════════════════════════ */
+#settings-panel{position:fixed;top:0;right:-380px;width:360px;height:100vh;background:var(--card);box-shadow:-4px 0 24px rgba(0,0,0,.2);z-index:600;transition:right .35s cubic-bezier(.4,0,.2,1),background .3s;overflow-y:auto;display:flex;flex-direction:column}
+#settings-panel.open{right:0}
+.settings-head{background:var(--topbar-bg);padding:1.2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;transition:background .3s}
+.settings-head h3{font-family:'Nunito',sans-serif;font-weight:800;color:#fff;font-size:1.1rem}
+.settings-head button{background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;opacity:.85;transition:opacity .2s}
+.settings-head button:hover{opacity:1}
+.settings-body{padding:1.5rem;flex:1}
+.settings-section{margin-bottom:1.8rem}
+.settings-section h4{font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:.9rem;border-bottom:1px solid var(--border);padding-bottom:.4rem}
+
+/* Theme toggle */
+.theme-toggle{display:flex;background:var(--input-bg);border-radius:50px;padding:.25rem;gap:.25rem;transition:background .3s}
+.theme-btn{flex:1;padding:.5rem;border:none;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;background:transparent;color:var(--muted);transition:background .2s,color .2s}
+.theme-btn.active{background:var(--green);color:#fff}
+
+/* Users list in settings */
+.user-row{display:flex;align-items:center;justify-content:space-between;padding:.7rem .9rem;background:var(--card2);border-radius:8px;margin-bottom:.5rem;transition:background .3s}
+.user-row-info{display:flex;flex-direction:column;gap:.15rem}
+.user-row-name{font-weight:600;font-size:.9rem;color:var(--text)}
+.user-row-role{font-size:.75rem;color:var(--muted)}
+.user-row-actions{display:flex;gap:.4rem}
+.icon-btn{background:none;border:none;cursor:pointer;font-size:.95rem;padding:.3rem .4rem;border-radius:6px;transition:background .2s}
+.icon-btn:hover{background:var(--border)}
+.icon-btn.del:hover{background:#fde8e8}
+
+/* ══════════════════════════════════════
+   ACTION BUTTONS (dashboard table)
+══════════════════════════════════════ */
+.action-cell{display:flex;gap:.4rem;align-items:center}
+.action-btn{border:none;border-radius:6px;padding:.3rem .6rem;cursor:pointer;font-size:.82rem;font-weight:700;transition:background .2s,transform .1s}
+.action-btn:active{transform:scale(.93)}
+.edit-btn{background:#eaf4fd;color:#2980b9}
+.edit-btn:hover{background:#d0e8f8}
+.del-btn{background:#fde8e8;color:#c0392b}
+.del-btn:hover{background:#f5c6c6}
+
+/* ══════════════════════════════════════
+   EXPORT BUTTONS
+══════════════════════════════════════ */
+.btn-export-csv{background:#16a085!important}
+.btn-export-csv:hover{background:#138d75!important}
+.btn-export-pdf{background:#8e44ad!important}
+.btn-export-pdf:hover{background:#7d3c98!important}
+
+/* ══════════════════════════════════════
+   WIDE MODAL (edit student)
+══════════════════════════════════════ */
+.modal-box-wide{max-width:680px!important;width:95%!important}
+.modal-box-wide .form-grid{grid-template-columns:1fr 1fr}
+@media(max-width:600px){.modal-box-wide .form-grid{grid-template-columns:1fr}}
+
+/* ══════════════════════════════════════
+   TOAST
+══════════════════════════════════════ */
+#toast{position:fixed;bottom:1.5rem;right:1.5rem;background:#1a1a2e;color:#fff;padding:.8rem 1.4rem;border-radius:10px;font-size:.9rem;font-weight:600;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;transform:translateY(8px);z-index:999}
+#toast.show{opacity:1;transform:translateY(0)}
+[data-theme="dark"] #toast{background:#2d3748}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media(max-width:600px){
+  .form-grid{grid-template-columns:1fr}
+  .card{padding:2rem 1.5rem}
+  .form-card{padding:1.5rem 1.2rem}
+  #settings-panel{width:100%;right:-100%}
+}
+/* ══════════════════════════════════════
+   DOCUMENTS SYSTEM
+══════════════════════════════════════ */
+
+/* Doc count badge in table */
+.doc-count-btn{
+  background:var(--card2);border:1.5px solid var(--border);color:var(--muted);
+  border-radius:20px;padding:.25rem .7rem;font-size:.8rem;font-weight:700;
+  cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.3rem;
+  white-space:nowrap
+}
+.doc-count-btn:hover{background:var(--green-light);border-color:var(--green);color:var(--green-dark)}
+.doc-count-btn.has-docs{background:var(--green-light);border-color:var(--green);color:var(--green-dark)}
+
+/* Viewer modal — fullscreen-ish */
+.modal-box-viewer{max-width:900px!important;width:96%!important;padding:1.2rem 1.4rem!important}
+
+/* Drop zone */
+.doc-dropzone{
+  border:2.5px dashed var(--border);border-radius:12px;padding:1.6rem 1rem;
+  text-align:center;cursor:pointer;transition:border-color .2s,background .2s;
+  background:var(--card2)
+}
+.doc-dropzone:hover,.doc-dropzone.dragover{
+  border-color:var(--green);background:var(--green-light)
+}
+.doc-dropzone-icon{font-size:2rem;margin-bottom:.4rem;line-height:1}
+.doc-dropzone-text{font-weight:700;font-size:.95rem;color:var(--text)}
+.doc-dropzone-sub{font-size:.78rem;color:var(--muted);margin-top:.25rem}
+
+/* Docs list rows */
+.doc-row{
+  display:flex;align-items:center;gap:.8rem;padding:.7rem .9rem;
+  background:var(--card2);border-radius:10px;margin-bottom:.45rem;
+  border:1px solid var(--border);transition:background .2s
+}
+.doc-row:hover{background:var(--row-hover)}
+.doc-row-icon{font-size:1.4rem;flex-shrink:0;line-height:1}
+.doc-row-info{flex:1;min-width:0}
+.doc-row-name{
+  display:block;font-weight:600;font-size:.88rem;color:var(--text);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.doc-row-meta{font-size:.75rem;color:var(--muted)}
+.doc-row-actions{display:flex;gap:.35rem;flex-shrink:0}
+
+/* ══════════════════════════════════════
+   LOGO SAGE
+══════════════════════════════════════ */
+
+/* ── Login Logo ── */
+.logo-login {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.logo-icon-large {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+}
+
+.logo-icon-large svg {
+    width: 100%;
+    height: 100%;
+}
+
+.logo-login-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+}
+
+.logo-login-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    margin: 0;
+}
+
+.logo-login-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-footer {
+    margin-top: 1.2rem;
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+}
+
+/* ── Home Logo ── */
+.logo-home {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.logo-icon-small {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.logo-icon-small svg {
+    width: 100%;
+    height: 100%;
+}
+
+.logo-home-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.3px;
+    line-height: 1.1;
+}
+
+.logo-home-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    color: var(--muted);
+    font-weight: 500;
+    margin: 0;
+}
+
+/* ── Form Header Logo ── */
+.form-header-logo {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.logo-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--card2);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+}
+
+.logo-inline-icon {
+    font-size: 1.2rem;
+}
+
+.logo-inline-title {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text);
+}
+
+.logo-inline-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    color: var(--muted);
+    font-weight: 500;
+    padding-left: 0.4rem;
+    border-left: 1px solid var(--border);
+}
+
+/* ── Topbar Logo ── */
+.topbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.topbar-logo-icon {
+    font-size: 1.2rem;
+}
+
+.topbar-logo-text {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #fff;
+    letter-spacing: -0.3px;
+}
+
+.topbar-logo-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    padding-left: 0.4rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    display: none;
+}
+
+@media(min-width: 600px) {
+    .topbar-logo-sub {
+        display: inline;
+    }
+}
+
+/* ── Settings Head Logo ── */
+.settings-head-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.settings-head-icon {
+    font-size: 1.3rem;
+}
+
+/* ── Dark Theme Adjustments ── */
+[data-theme="dark"] .logo-login-title,
+[data-theme="dark"] .logo-home-title,
+[data-theme="dark"] .logo-inline-title {
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] .logo-login-subtitle,
+[data-theme="dark"] .logo-home-subtitle,
+[data-theme="dark"] .logo-inline-sub {
+    color: #94a3b8;
+}
+
+/* ── Responsive ── */
+@media(max-width: 480px) {
+    .logo-login {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo-login-title {
+        font-size: 1.8rem;
+    }
+    
+    .logo-home {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo-home-title {
+        font-size: 1.4rem;
+    }
+    
+    .logo-inline {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.8rem;
+    }
+    
+    .topbar-logo-sub {
+        display: none;
+    }
+}
+/* ══════════════════════════════════════
+   LOGO SAGE
+══════════════════════════════════════ */
+
+/* ── Login Logo ── */
+.logo-login {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.logo-icon-large {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+}
+
+.logo-icon-large svg {
+    width: 100%;
+    height: 100%;
+}
+
+.logo-login-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+}
+
+.logo-login-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    margin: 0;
+}
+
+.logo-login-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-footer {
+    margin-top: 1.2rem;
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+}
+
+/* ── Home Logo ── */
+.logo-home {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.logo-icon-small {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.logo-icon-small svg {
+    width: 100%;
+    height: 100%;
+}
+
+.logo-home-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.3px;
+    line-height: 1.1;
+}
+
+.logo-home-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    color: var(--muted);
+    font-weight: 500;
+    margin: 0;
+}
+
+/* ── Form Header Logo ── */
+.form-header-logo {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.logo-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--card2);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+}
+
+.logo-inline-icon {
+    font-size: 1.2rem;
+}
+
+.logo-inline-title {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text);
+}
+
+.logo-inline-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    color: var(--muted);
+    font-weight: 500;
+    padding-left: 0.4rem;
+    border-left: 1px solid var(--border);
+}
+
+/* ── Topbar Logo ── */
+.topbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.topbar-logo-icon {
+    font-size: 1.2rem;
+}
+
+.topbar-logo-text {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #fff;
+    letter-spacing: -0.3px;
+}
+
+.topbar-logo-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    padding-left: 0.4rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    display: none;
+}
+
+@media(min-width: 600px) {
+    .topbar-logo-sub {
+        display: inline;
+    }
+}
+
+/* ── Settings Head Logo ── */
+.settings-head-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.settings-head-icon {
+    font-size: 1.3rem;
+}
+
+/* ── Dark Theme Adjustments ── */
+[data-theme="dark"] .logo-login-title,
+[data-theme="dark"] .logo-home-title,
+[data-theme="dark"] .logo-inline-title {
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] .logo-login-subtitle,
+[data-theme="dark"] .logo-home-subtitle,
+[data-theme="dark"] .logo-inline-sub {
+    color: #94a3b8;
+}
+
+/* ── Responsive ── */
+@media(max-width: 480px) {
+    .logo-login {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo-login-title {
+        font-size: 1.8rem;
+    }
+    
+    .logo-home {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo-home-title {
+        font-size: 1.4rem;
+    }
+    
+    .logo-inline {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.8rem;
+    }
+    
+    .topbar-logo-sub {
+        display: none;
+    }
+}
